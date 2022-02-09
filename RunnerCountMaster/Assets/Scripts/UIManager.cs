@@ -4,6 +4,13 @@ public class UIManager : MonoBehaviour
 {
     private void Awake()
     {
-        DontDestroyOnLoad(this);
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("UI");
+
+        if (objs.Length > 1)
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
     }
 }

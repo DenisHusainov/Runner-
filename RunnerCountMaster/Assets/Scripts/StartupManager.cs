@@ -6,6 +6,8 @@ public class StartupManager : MonoBehaviour
 {
     public const string StartupScene = "Startup";
 
+    public const string UIScene = "UI";
+
     public const string TutorialLevel = "SampleScene";
 
     IEnumerator Start()
@@ -21,6 +23,8 @@ public class StartupManager : MonoBehaviour
 
     IEnumerator LoadScene()
     {
+        yield return SceneManager.LoadSceneAsync(UIScene);
+
         yield return SceneManager.LoadSceneAsync(TutorialLevel);
     }
 }
