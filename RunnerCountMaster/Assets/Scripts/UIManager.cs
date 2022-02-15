@@ -1,7 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static bool IsStarted { get; private set; }
+
+    [SerializeField] private Button _buttonStart;
+
     private void Awake()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("UI");
@@ -12,5 +17,15 @@ public class UIManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        _buttonStart.onClick.AddListener(StartGame);
+    }
+
+    private void StartGame()
+    { 
+        IsStarted = true;
     }
 }
