@@ -552,6 +552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 0
   _player: {fileID: 3164050605456281285, guid: 5d219be5e5a9d4ae79883b53b37a1f76, type: 3}
+  _rb: {fileID: 5390938705498754997, guid: 5d219be5e5a9d4ae79883b53b37a1f76, type: 3}
 --- !u!114 &1404877723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,7 +566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
