@@ -10,10 +10,19 @@ public class PlayerController : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
         Vector2 delta = eventData.delta;
 
-        if (eventData.delta.x>0)
+        if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
         {
-            _player.position += new Vector3(delta.x * _speed, 0, 0);
+            if (eventData.delta.x > 0)
+            {
+                _player.position += new Vector3(delta.x * _speed, 0, 0);
+                Debug.Log("Right");
+            }
+            else
+            {
+                Debug.Log("Left");
+            }
         }
+        
     }
 
     public void OnDrag(PointerEventData eventData)
