@@ -35,6 +35,5 @@ public class GameManager : MonoBehaviour
     private void GameWindow_Started()
     {
         IsStarted = true;
-        Debug.Log("1");
     }
 }

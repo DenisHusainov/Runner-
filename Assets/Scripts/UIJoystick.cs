@@ -4,12 +4,14 @@ using UnityEngine.UI;
 
 public class UIJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
-    [SerializeField] private Image _backgroundJoystick;
-    [SerializeField] private Image _joystick;
-
-    public static Vector3 _inputVector { get; private set; }
+    [SerializeField]
+    private Image _backgroundJoystick;
+    [SerializeField]
+    private Image _joystick;
 
     public static UIJoystick Instance = null;
+
+    public static Vector3 InputVector { get; private set; }
 
     private void Awake()
     {
@@ -32,10 +34,10 @@ public class UIJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
             pos.x = (pos.x / _backgroundJoystick.rectTransform.sizeDelta.x);
             //pos.y = (pos.y / _backgroundJoystick.rectTransform.sizeDelta.y);
 
-            _inputVector = new Vector3(pos.x * 2 + 1, 0, 0);
-            _inputVector = (_inputVector.magnitude > 1.0f) ? _inputVector.normalized : _inputVector;
+            InputVector = new Vector3(pos.x, 0, 0);
+            InputVector = (InputVector.magnitude > 1.0f) ? InputVector.normalized : InputVector;
 
-            _joystick.rectTransform.anchoredPosition = new Vector3(_inputVector.x * (_backgroundJoystick.rectTransform.sizeDelta.x / 2), _inputVector.z * (_backgroundJoystick.rectTransform.sizeDelta.y / 2));
+            _joystick.rectTransform.anchoredPosition = new Vector3(InputVector.x * (_backgroundJoystick.rectTransform.sizeDelta.x / 2), InputVector.z * (_backgroundJoystick.rectTransform.sizeDelta.y / 2));
         }
     }
 
@@ -46,7 +48,7 @@ public class UIJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        _inputVector = Vector3.zero;
+        InputVector = Vector3.zero;
         _joystick.rectTransform.anchoredPosition = Vector3.zero;
     }
 }

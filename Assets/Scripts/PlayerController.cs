@@ -2,18 +2,25 @@ using UnityEngine;
 
 public class PlayerController : UIJoystick
 {
-    private const float TurnSpeed = 0.3f;
+    private const float TurnSpeed = 20f;
     private const float Speed = 20f;
 
-    [SerializeField] private Rigidbody _rb;
+    [SerializeField]
+    private Rigidbody _rb;
 
     private Vector3 _moveVector;
+    private Vector3 _defaultSpeed;
+
+    private void Start()
+    {
+        _defaultSpeed = new Vector3(0, 0, Speed);// тут не работает
+    }
 
     private void FixedUpdate()
     {
         _moveVector = PoolInput();
-        _rb.velocity = new Vector3(0,0,Speed);
-        transform.position += _moveVector * TurnSpeed;
+        _rb.velocity = _defaultSpeed;
+        _rb.velocity = _moveVector * TurnSpeed;
     }
 
     private Vector3 PoolInput()
@@ -27,9 +34,9 @@ public class PlayerController : UIJoystick
 
     public float HorizontalMove()
     {
-        if (UIJoystick._inputVector.x != 0)
+        if (UIJoystick.InputVector.x != 0)
         {
-            return UIJoystick._inputVector.x;
+            return UIJoystick.InputVector.x;
         }
         else
         {

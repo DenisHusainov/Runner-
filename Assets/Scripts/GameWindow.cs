@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,17 +11,15 @@ public class GameWindow : Window
 
     private void Start()
     {
-        _startGame.onClick.AddListener(GameStarted);
-        _startGame.gameObject.SetActive(false);
+        _startGame.onClick.AddListener(OnStartGameButtonClicked);
     }
-
 
     public override void Show()
     {
         _gameWindow.gameObject.SetActive(true);
     }
 
-    private void GameStarted()
+    private void OnStartGameButtonClicked()
     {
         Started();
     }
