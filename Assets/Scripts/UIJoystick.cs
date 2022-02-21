@@ -1,36 +1,57 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler
+public class UIJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
-    public static event Action MovePlayerRight = delegate { };
-    public static event Action MovePlayerLeft = delegate { };
+    [SerializeField] private Image _backgroundJoystick;
+    [SerializeField] private Image _joystick;
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public static Vector3 _inputVector { get; private set; }
+
+    public static UIJoystick Instance = null;
+
+    private void Awake()
     {
-        Vector2 delta = eventData.delta;
-
-        if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+        if (!Instance)
         {
-            if (eventData.delta.x > 0)
-            {
-                MovePlayerRight();
-                Debug.Log("Right");
-            }
-            else
-            {
-                MovePlayerLeft();
-                Debug.Log("Left");
-            }
+            Instance = null;
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        //_backgroundJoystick = GetComponent<Image>();
+        //_joystick = GetComponent<Image>();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        Vector2 pos;
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_backgroundJoystick.rectTransform,eventData.position,eventData.pressEventCamera,out pos))
+        {
+            pos.x = (pos.x / _backgroundJoystick.rectTransform.sizeDelta.x);
+            pos.y = (pos.y / _backgroundJoystick.rectTransform.sizeDelta.y);
 
+            _inputVector = new Vector3(pos.x * 2 + 1, 0, pos.y * 2 - 1);
+            _inputVector = (_inputVector.magnitude > 1.0f) ? _inputVector.normalized : _inputVector;
+
+            _joystick.rectTransform.anchoredPosition = new Vector3(_inputVector.x * (_backgroundJoystick.rectTransform.sizeDelta.x / 2), _inputVector.z * (_backgroundJoystick.rectTransform.sizeDelta.y / 2));
+        }
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        OnDrag(eventData);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        _inputVector = Vector3.zero;
+        _joystick.rectTransform.anchoredPosition = Vector3.zero;
     }
 }
