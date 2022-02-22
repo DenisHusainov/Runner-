@@ -11,8 +11,8 @@ public class PlayerController : UIJoystick
     [SerializeField]
     private Rigidbody _rb;
 
-    private Vector3 _moveVector;
-    private Vector3 _defaultSpeed;
+    private Vector3 _moveVector = default;
+    private Vector3 _defaultSpeed = default;
 
     private void Start()
     {

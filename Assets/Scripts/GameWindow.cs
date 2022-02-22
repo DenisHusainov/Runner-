@@ -6,8 +6,10 @@ public class GameWindow : Window
 {
     public static event Action Started = delegate { };
 
-    [SerializeField] private Canvas _gameWindow;
-    [SerializeField] private Button _startGame;
+    [SerializeField]
+    private Canvas _gameWindow;
+    [SerializeField]
+    private Button _startGame;
 
     private void Start()
     {

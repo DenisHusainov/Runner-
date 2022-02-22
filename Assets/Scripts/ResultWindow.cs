@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ResultWindow : Window
 {
-    [SerializeField] private Canvas _resultWindow;
+    [SerializeField]
+    private Canvas _resultWindow;
 
     public override void Show()
     {
