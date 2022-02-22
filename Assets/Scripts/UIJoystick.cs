@@ -29,14 +29,14 @@ public class UIJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
     {
         Vector2 pos;
 
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_backgroundJoystick.rectTransform,eventData.position,eventData.pressEventCamera,out pos))
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_backgroundJoystick.rectTransform, eventData.position, eventData.pressEventCamera, out pos))
         {
             pos.x = (pos.x / _backgroundJoystick.rectTransform.sizeDelta.x);
 
             InputVector = new Vector3(pos.x, 0, 0);
             InputVector = (InputVector.magnitude > 1.0f) ? InputVector.normalized : InputVector;
 
-            _joystick.rectTransform.anchoredPosition = new Vector3(InputVector.x * (_backgroundJoystick.rectTransform.sizeDelta.x / 2), InputVector.z * (_backgroundJoystick.rectTransform.sizeDelta.y / 2));
+            _joystick.rectTransform.anchoredPosition = new Vector3(InputVector.x * (_backgroundJoystick.rectTransform.sizeDelta.x),0);
         }
     }
 
