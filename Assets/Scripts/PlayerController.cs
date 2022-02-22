@@ -3,9 +3,8 @@ using UnityEngine;
 
 public class PlayerController : UIJoystick
 {
-    public static event Action Finish = delegate { };
+    public static event Action Won = delegate { };
 
-    private const float TurnSpeed = 20f;
     private const float Speed = 20f;
 
     [SerializeField]
@@ -16,19 +15,14 @@ public class PlayerController : UIJoystick
 
     private void Start()
     {
-        _defaultSpeed = new Vector3(0, 0, Speed);// тут не работает
+        _defaultSpeed = new Vector3(0, 0, 1);
     }
 
     private void FixedUpdate()
     {
-        //if (!CanMove())
-        //{
-        //    return;
-        //}
-
         _moveVector = PoolInput();
-        _rb.velocity = _defaultSpeed;
-        _rb.velocity = _moveVector * TurnSpeed;
+        _rb.velocity = _defaultSpeed * Speed;
+        transform.position += _moveVector;
     }
 
     private Vector3 PoolInput()
@@ -42,9 +36,9 @@ public class PlayerController : UIJoystick
 
     public float HorizontalMove()
     {
-        if (UIJoystick.InputVector.x != 0)
+        if (InputVector.x != 0)
         {
-            return UIJoystick.InputVector.x;
+            return InputVector.x;
         }
         else
         {
@@ -52,16 +46,11 @@ public class PlayerController : UIJoystick
         }
     }
 
-    private bool CanMove()
-    {
-        return GameManager.Instance.IsStarted && !GameManager.Instance.IsFineshed;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<BoxCollider>())
         {
-            Finish();
+            Won();
         }
     }
 }

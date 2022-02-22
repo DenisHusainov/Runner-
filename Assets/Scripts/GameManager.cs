@@ -25,13 +25,13 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         GameWindow.Started += GameWindow_Started;
-        PlayerController.Finish += PlayerController_Finish;
+        PlayerController.Won += PlayerController_Won;
     }
 
     private void OnDisable()
     {
         GameWindow.Started -= GameWindow_Started;
-        PlayerController.Finish -= PlayerController_Finish;
+        PlayerController.Won -= PlayerController_Won;
     }
 
     private void GameWindow_Started()
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         IsStarted = true;
     }
 
-    private void PlayerController_Finish()
+    private void PlayerController_Won()
     {
         IsFineshed = true;
         Fineshed();

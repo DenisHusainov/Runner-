@@ -9,11 +9,11 @@ public class GameWindow : Window
     [SerializeField]
     private Canvas _gameWindow;
     [SerializeField]
-    private Button _startGame;
+    private Button _startGameButton;
 
     private void Start()
     {
-        _startGame.onClick.AddListener(OnStartGameButtonClicked);
+        _startGameButton.onClick.AddListener(OnStartGameButtonClicked);
     }
 
     public override void Show()
