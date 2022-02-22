@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance = null;
 
-    public static bool IsStarted { get; private set; }
-    public static bool IsFineshed { get; private set; }
+    public bool IsStarted { get; private set; }
+    public bool IsFineshed { get; private set; }
 
     private void Awake()
     {
@@ -25,15 +25,23 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         GameWindow.Started += GameWindow_Started;
+        PlayerController.Finish += PlayerController_Finish;
     }
 
     private void OnDisable()
     {
         GameWindow.Started -= GameWindow_Started;
+        PlayerController.Finish -= PlayerController_Finish;
     }
 
     private void GameWindow_Started()
     {
         IsStarted = true;
+    }
+
+    private void PlayerController_Finish()
+    {
+        IsFineshed = true;
+        Fineshed();
     }
 }

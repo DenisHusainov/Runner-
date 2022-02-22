@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : UIJoystick
 {
+    public static event Action Finish = delegate { };
+
     private const float TurnSpeed = 20f;
     private const float Speed = 20f;
 
@@ -18,6 +21,11 @@ public class PlayerController : UIJoystick
 
     private void FixedUpdate()
     {
+        //if (!CanMove())
+        //{
+        //    return;
+        //}
+
         _moveVector = PoolInput();
         _rb.velocity = _defaultSpeed;
         _rb.velocity = _moveVector * TurnSpeed;
@@ -41,6 +49,19 @@ public class PlayerController : UIJoystick
         else
         {
             return Input.GetAxis("Horizontal");
+        }
+    }
+
+    private bool CanMove()
+    {
+        return GameManager.Instance.IsStarted && !GameManager.Instance.IsFineshed;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<BoxCollider>())
+        {
+            Finish();
         }
     }
 }

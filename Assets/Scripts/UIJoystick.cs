@@ -32,7 +32,6 @@ public class UIJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_backgroundJoystick.rectTransform,eventData.position,eventData.pressEventCamera,out pos))
         {
             pos.x = (pos.x / _backgroundJoystick.rectTransform.sizeDelta.x);
-            //pos.y = (pos.y / _backgroundJoystick.rectTransform.sizeDelta.y);
 
             InputVector = new Vector3(pos.x, 0, 0);
             InputVector = (InputVector.magnitude > 1.0f) ? InputVector.normalized : InputVector;
