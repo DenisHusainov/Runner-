@@ -509,7 +509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameWindow: {fileID: 1052939951}
-  _startGame: {fileID: 1393501100}
+  _startGameButton: {fileID: 1393501100}
 --- !u!1 &1139040283
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,8 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public static event Action Fineshed = delegate { };
 
-    public static GameManager Instance = null;
-
+    public static GameManager Instance { get; private set; }
     public bool IsStarted { get; private set; }
     public bool IsFineshed { get; private set; }
 
