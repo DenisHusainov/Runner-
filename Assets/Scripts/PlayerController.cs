@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerController : UIJoystick
+public class PlayerController : MonoBehaviour
 {
     public static event Action Won = delegate { };
 
@@ -36,19 +36,12 @@ public class PlayerController : UIJoystick
 
     public float HorizontalMove()
     {
-        if (InputVector.x != 0)
-        {
-            return InputVector.x;
-        }
-        else
-        {
-            return Input.GetAxis("Horizontal");
-        }
+        return UIJoystick.Instance.InputVector.x;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<FinishGame>())
+        if (other.gameObject.GetComponent<EndGameCheck>())
         {
             Won();
         }

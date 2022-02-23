@@ -11,18 +11,11 @@ public class UIJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoi
 
     public static UIJoystick Instance = null;
 
-    public static Vector3 InputVector { get; private set; }
+    public Vector3 InputVector { get; private set; }
 
     private void Awake()
     {
-        if (!Instance)
-        {
-            Instance = null;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
     }
 
     public void OnDrag(PointerEventData eventData)

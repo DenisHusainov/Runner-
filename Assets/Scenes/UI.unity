@@ -508,7 +508,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0377c66c2e3f41ef8334d1c5aa9e00a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameWindow: {fileID: 1052939951}
   _startGameButton: {fileID: 1393501100}
 --- !u!1 &1139040283
 GameObject:
@@ -900,7 +899,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed4bddc8e5eaa44fdacdd6a79f92b79c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resultWindow: {fileID: 1811473666}
 --- !u!1 &2145710588
 GameObject:
   m_ObjectHideFlags: 0

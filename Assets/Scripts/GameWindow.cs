@@ -9,8 +9,6 @@ public class GameWindow : Window
     [SerializeField]
     private Button _startGameButton;
 
-    private Canvas _gameWindow = null;
-
     private void Start()
     {
         _startGameButton.onClick.AddListener(OnStartGameButtonClicked);
