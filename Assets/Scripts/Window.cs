@@ -2,8 +2,8 @@ using UnityEngine;
 
 public abstract class Window : MonoBehaviour
 {
-    public virtual void Show()
+    public void Show()
     {
-
+        gameObject.SetActive(true);
     }
 }

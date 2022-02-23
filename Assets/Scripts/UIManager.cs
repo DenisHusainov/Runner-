@@ -7,9 +7,9 @@ public class UIManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public static void ShowWindow<T>() where T : Window
+    public void ShowWindow<T>() where T : Window
     {
-        T window = FindObjectOfType<T>();
+        T window = GetComponentInChildren<T>();
         window.Show();
     }
 }

@@ -48,7 +48,7 @@ public class PlayerController : UIJoystick
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<BoxCollider>())
+        if (other.gameObject.GetComponent<FinishGame>())
         {
             Won();
         }
