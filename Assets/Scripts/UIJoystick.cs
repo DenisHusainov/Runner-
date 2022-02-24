@@ -5,12 +5,11 @@ using UnityEngine.UI;
 public class UIJoystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     [SerializeField]
-    private Image _backgroundJoystick;
+    private Image _backgroundJoystick = null;
     [SerializeField]
-    private Image _joystick;
+    private Image _joystick = null;
 
-    public static UIJoystick Instance = null;
-
+    public static UIJoystick Instance { get; private set; }
     public Vector3 InputVector { get; private set; }
 
     private void Awake()

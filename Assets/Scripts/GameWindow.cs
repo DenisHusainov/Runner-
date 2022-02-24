@@ -7,7 +7,7 @@ public class GameWindow : Window
     public static event Action Started = delegate { };
 
     [SerializeField]
-    private Button _startGameButton;
+    private Button _startGameButton = null;
 
     private void Start()
     {

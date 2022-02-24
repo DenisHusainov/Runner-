@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private const float Speed = 20f;
 
     [SerializeField]
-    private Rigidbody _rb;
+    private Rigidbody _rb = null;
 
     private Vector3 _moveVector = default;
     private Vector3 _defaultSpeed = default;
