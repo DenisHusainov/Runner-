@@ -11,14 +11,9 @@ public class UIManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    
-
     public void ShowWindow<T>() where T : Window
     {
-        foreach (var window in _windows)
-        {
-            var windowToShow = _windows.FirstOrDefault(x => x is T);
-            window.Show();
-        }
+        var windowToShow = _windows.FirstOrDefault(x => x is T);
+        windowToShow.Show();
     }
 }
