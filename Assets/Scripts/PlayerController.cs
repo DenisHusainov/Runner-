@@ -1,10 +1,7 @@
-using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public static event Action Won = delegate { };
-
     private const float Speed = 20f;
 
     [SerializeField]
@@ -20,12 +17,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _moveVector = PoolInput();
+        _moveVector = GetMoveVector();
         _rb.velocity = _defaultSpeed * Speed;
         transform.position += _moveVector;
     }
 
-    private Vector3 PoolInput()
+    private Vector3 GetMoveVector()
     {
         Vector3 dir = Vector3.zero;
 
@@ -37,13 +34,5 @@ public class PlayerController : MonoBehaviour
     public float HorizontalMove()
     {
         return UIJoystick.Instance.InputVector.x;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.GetComponent<EndGameCheck>())
-        {
-            Won();
-        }
     }
 }

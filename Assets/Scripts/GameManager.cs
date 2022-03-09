@@ -24,13 +24,13 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         GameWindow.Started += GameWindow_Started;
-        PlayerController.Won += PlayerController_Won;
+        FinishController.Won += PlayerController_Won;
     }
 
     private void OnDisable()
     {
         GameWindow.Started -= GameWindow_Started;
-        PlayerController.Won -= PlayerController_Won;
+        FinishController.Won -= PlayerController_Won;
     }
 
     private void GameWindow_Started()
