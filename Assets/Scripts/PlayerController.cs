@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 _moveVector = default;
     private Vector3 _defaultSpeed = default;
+    private int _countPlayers = default;
 
     private void OnEnable()
     {
@@ -44,16 +45,19 @@ public class PlayerController : MonoBehaviour
           return UIJoystick.Instance.InputVector.x;
     }
 
-    private void SpawnerPlayers()
+    private void SpawnerPlayers(int CountPlayers)
     {
-        GameObject spawner = PoolController.Instance.GetPoolObject(PoolType.Player);
-        spawner.transform.position = transform.position + new Vector3(0, 2, 0);
-        spawner.SetActive(true);
+        for (int i = 0; i < CountPlayers; i++)
+        {
+            GameObject spawner = PoolController.Instance.GetPoolObject(PoolType.Player);
+            spawner.transform.position = transform.position + new Vector3(0, 2, 0);
+            spawner.SetActive(true);
+        }
     }
 
     private void BonusController_Spawed()
     {
-        SpawnerPlayers();
+        Debug.Log("2");
+        SpawnerPlayers(_countPlayers);
     }
-
 }

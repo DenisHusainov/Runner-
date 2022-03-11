@@ -7,11 +7,11 @@ public class BonusController : MonoBehaviour
     public static event Action Spawed = delegate { };
 
     [SerializeField]
-    private TextMeshPro _rightBonus = null;
+    private TextMeshPro textMeshPro = null;
     [SerializeField]
-    private TextMeshPro _leftBonus = null;
+    private BonusController _bonusController = null;
     [SerializeField]
-    private Collider[] _bonusColiders = null;
+    private int _bonusNumber = default;
 
     private void OnTriggerEnter(Collider other)
     {
