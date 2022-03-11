@@ -3,12 +3,19 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private const float Speed = 20f;
+    private const float RightBorder = 3.5f;
+    private const float LeftBorder = -3.5f;
 
     [SerializeField]
     private Rigidbody _rb = null;
 
     private Vector3 _moveVector = default;
     private Vector3 _defaultSpeed = default;
+
+    private void OnEnable()
+    {
+        BonusController.Spawed += BonusController_Spawed;
+    }
 
     private void Start()
     {
@@ -19,6 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         _moveVector = GetMoveVector();
         _rb.velocity = _defaultSpeed * Speed;
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, LeftBorder, RightBorder), transform.position.y, transform.position.z);
         transform.position += _moveVector;
     }
 
@@ -33,6 +41,19 @@ public class PlayerController : MonoBehaviour
 
     public float HorizontalMove()
     {
-        return UIJoystick.Instance.InputVector.x;
+          return UIJoystick.Instance.InputVector.x;
     }
+
+    private void SpawnerPlayers()
+    {
+        GameObject spawner = PoolController.Instance.GetPoolObject(PoolType.Player);
+        spawner.transform.position = transform.position + new Vector3(0, 2, 0);
+        spawner.SetActive(true);
+    }
+
+    private void BonusController_Spawed()
+    {
+        SpawnerPlayers();
+    }
+
 }
