@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour
 
     private void BonusController_Spawed()
     {
-        Debug.Log("2");
         SpawnerPlayers(_countPlayers);
     }
 }
