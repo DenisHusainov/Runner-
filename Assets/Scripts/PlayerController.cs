@@ -15,7 +15,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        BonusController.Spawed += BonusController_Spawed;
+        BonusController.Spawned += BonusController_Spawed;
+    }
+
+    private void OnDisable()
+    {
+        BonusController.Spawned -= BonusController_Spawed;
     }
 
     private void Start()
@@ -45,9 +50,9 @@ public class PlayerController : MonoBehaviour
           return UIJoystick.Instance.InputVector.x;
     }
 
-    private void SpawnerPlayers(int CountPlayers)
+    private void SpawnPlayers(int сountPlayers)
     {
-        for (int i = 0; i < CountPlayers; i++)
+        for (int i = 0; i < сountPlayers; i++)
         {
             GameObject spawner = PoolController.Instance.GetPoolObject(PoolType.Player);
             spawner.transform.position = transform.position + new Vector3(0, 2, 0);
@@ -57,6 +62,6 @@ public class PlayerController : MonoBehaviour
 
     private void BonusController_Spawed()
     {
-        SpawnerPlayers(_countPlayers);
+        SpawnPlayers(_countPlayers);
     }
 }
