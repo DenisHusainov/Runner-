@@ -1,27 +1,20 @@
+using System;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, ISpawner
 {
     private const float Speed = 20f;
     private const float RightBorder = 3.5f;
     private const float LeftBorder = -3.5f;
+
+    public static event Action CountSpawned = delegate { };
 
     [SerializeField]
     private Rigidbody _rb = null;
 
     private Vector3 _moveVector = default;
     private Vector3 _defaultSpeed = default;
-    private int _countPlayers = default;
-
-    private void OnEnable()
-    {
-        BonusController.Spawned += BonusController_Spawed;
-    }
-
-    private void OnDisable()
-    {
-        BonusController.Spawned -= BonusController_Spawed;
-    }
+    private ObjectPool<PoolObject> _objectPool;
 
     private void Start()
     {
@@ -50,18 +43,11 @@ public class PlayerController : MonoBehaviour
           return UIJoystick.Instance.InputVector.x;
     }
 
-    private void SpawnPlayers(int сountPlayers)
+    public void Spawn(int count)
     {
-        for (int i = 0; i < сountPlayers; i++)
+        for (int i = 0; i < count; i++)
         {
-            GameObject spawner = PoolController.Instance.GetPoolObject(PoolType.Player);
-            spawner.transform.position = transform.position + new Vector3(0, 2, 0);
-            spawner.SetActive(true);
+           _objectPool.PullGameObject(transform.position, Quaternion.identity);
         }
-    }
-
-    private void BonusController_Spawed()
-    {
-        SpawnPlayers(_countPlayers);
     }
 }

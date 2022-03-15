@@ -1,28 +1,27 @@
-using System;
 using TMPro;
 using UnityEngine;
 
 public class BonusController : MonoBehaviour
 {
-    public static event Action Spawned = delegate { };
-
     [SerializeField]
     private TextMeshPro _bonusDoorText = null;
     [SerializeField]
     private BonusController _bonusController = null;
     [SerializeField]
-    private int _setBonus = default;
+    private int _bonusSpawnNumber = default;
+
+    private PlayerController _player = null;
 
     private void Start()
     {
-        _bonusDoorText.text = _setBonus.ToString();
+        _bonusDoorText.text = _bonusSpawnNumber.ToString();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<PlayerController>())
         {
-            Spawned();
+            _player.Spawn(_bonusSpawnNumber);
             _bonusController.gameObject.SetActive(false);
         }
     }
