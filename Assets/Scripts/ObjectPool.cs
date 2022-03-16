@@ -2,14 +2,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class ObjectPool<T> : IPool<T> where T : MonoBehaviour, IPoolable<T>
+public class ObjectPool<T> where T : Singleton<T>, IPoolable<T>, IPool<T>
 {
-    private Action<T> pullObject;
-    private Action<T> pushObject;
+    private Action<T> _pullObject;
+    private Action<T> _pushObject;
     private Stack<T> pooledObjects = new Stack<T>();
     private GameObject _prefab = null;
 
-    public int pooledCount
+    public int PooledCount
     {
         get
         {
@@ -19,22 +19,22 @@ public class ObjectPool<T> : IPool<T> where T : MonoBehaviour, IPoolable<T>
 
     public ObjectPool(GameObject pooledObject, int numToSpawn = 0)
     {
-        this._prefab = pooledObject;
+        _prefab = pooledObject;
         Spawn(numToSpawn);
     }
 
     public ObjectPool(GameObject pooledObject, Action<T> pullObject, Action<T> pushObject, int numToSpawn = 0)
     {
-        this._prefab = pooledObject;
-        this.pullObject = pullObject;
-        this.pushObject = pushObject;
+        _prefab = pooledObject;
+        _pullObject = pullObject;
+        _pushObject = pushObject;
         Spawn(numToSpawn);
     }
 
     public T Pull()
     {
         T t;
-        if (pooledCount > 0)
+        if (PooledCount > 0)
             t = pooledObjects.Pop();
         else
             t = GameObject.Instantiate(_prefab).GetComponent<T>();
@@ -42,7 +42,7 @@ public class ObjectPool<T> : IPool<T> where T : MonoBehaviour, IPoolable<T>
         t.gameObject.SetActive(true);
         t.Initialize(Push);
 
-        pullObject?.Invoke(t);
+        _pullObject?.Invoke(t);
 
         return t;
     }
@@ -86,7 +86,7 @@ public class ObjectPool<T> : IPool<T> where T : MonoBehaviour, IPoolable<T>
     {
         pooledObjects.Push(t);
 
-        pushObject?.Invoke(t);
+        _pushObject?.Invoke(t);
 
         t.gameObject.SetActive(false);
     }

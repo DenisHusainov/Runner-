@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, ISpawner
@@ -7,14 +6,11 @@ public class PlayerController : MonoBehaviour, ISpawner
     private const float RightBorder = 3.5f;
     private const float LeftBorder = -3.5f;
 
-    public static event Action CountSpawned = delegate { };
-
     [SerializeField]
     private Rigidbody _rb = null;
 
     private Vector3 _moveVector = default;
     private Vector3 _defaultSpeed = default;
-    private ObjectPool<PoolObject> _objectPool;
 
     private void Start()
     {
@@ -47,7 +43,7 @@ public class PlayerController : MonoBehaviour, ISpawner
     {
         for (int i = 0; i < count; i++)
         {
-           _objectPool.PullGameObject(transform.position, Quaternion.identity);
+            //pull
         }
     }
 }

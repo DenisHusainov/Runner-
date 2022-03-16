@@ -14,7 +14,7 @@ public class BonusController : MonoBehaviour
 
     private void Start()
     {
-        _bonusDoorText.text = _bonusSpawnNumber.ToString();
+        _bonusDoorText.text = $"{_bonusSpawnNumber}";
     }
 
     private void OnTriggerEnter(Collider other)
