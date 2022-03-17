@@ -8,6 +8,11 @@ public abstract class Singleton<T> : MonoBehaviour where T : Component
     {
         get
         {
+            if (_instance)
+            {
+                Debug.LogException(new System.Exception($"{nameof(Singleton<T>)} with type {nameof(T)} is null"));
+            }
+
             return _instance;
         }
     }
