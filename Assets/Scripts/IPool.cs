@@ -1,4 +1,6 @@
-public interface IPool<T>
+using UnityEngine;
+
+public interface IPool
 {
-    T Pull<K>();
+    T Pull<T>() where T: Component, IPoolable;
 }

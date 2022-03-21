@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class PoolManager: Singleton<PoolManager>, IPool<PoolManager> 
+public class PoolManager: Singleton<PoolManager>, IPool
 {
     private Dictionary<IPoolable, Stack<IPoolable>> _pooledObjects =
         new Dictionary<IPoolable, Stack<IPoolable>>();
@@ -29,7 +29,7 @@ public class PoolManager: Singleton<PoolManager>, IPool<PoolManager>
 
         for (int i = 0; i < _amountToPool; i++)
         {
-            var poolObject = Instantiate();
+            var poolObject = Instantiate(objectForSpawn); 
             stack.Push(poolObject);
             poolObject.gameObject.SetActive(false);
         }
@@ -41,17 +41,17 @@ public class PoolManager: Singleton<PoolManager>, IPool<PoolManager>
         stack.Push(pollObject);
     }
 
-    public PoolManager Pull()
+    public T Pull<T>() where T : Component, IPoolable
     {
+
         if (_pooledObjects.TryGetValue(_prefab, out var stack))
         {
-            stack.Pop();
+            var poolObject = (T)stack.Pop();
+            poolObject.SpawnFromPool();
+
+            return poolObject;
         }
 
-        IPoolable poolObject;
-
-        //Pooble.SpanwFromPull();
-
-        return
+        return null;
     }
 }
