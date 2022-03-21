@@ -4,66 +4,54 @@ using System;
 
 public class PoolManager: Singleton<PoolManager>, IPool<PoolManager> 
 {
-    private Dictionary<Type, Stack<MonoBehaviour>> _pooledObjects =
-        new Dictionary<Type, Stack<MonoBehaviour>>();
+    private Dictionary<IPoolable, Stack<IPoolable>> _pooledObjects =
+        new Dictionary<IPoolable, Stack<IPoolable>>();
 
     [SerializeField]
-    private GameObject _prefab = null;
+    private IPoolable _prefab = default;
+    [SerializeField]
+    private int _amountToPool = default;
 
-    public int PooledCount
+    private void Awake()
     {
-        get
-        {
-            return _pooledObjects.Count;
-        }
+        Spawn(_prefab);
     }
 
-    public PoolManager(GameObject pooledObject, int numToSpawn = 0)
-    { 
-        _prefab = pooledObject;
-        Spawn(numToSpawn);
-    }
-
-    private void Spawn(int number)
+    private void Spawn(IPoolable objectForSpawn)
     {
-        PoolManager poolObject;
-        
+        Stack<IPoolable> stack = null;
 
-        Stack<MonoBehaviour> stack = null;
-
-        if (!_pooledObjects.TryGetValue(_prefab.GetType(), out stack))
+        if (!_pooledObjects.TryGetValue(_prefab, out stack))
         {
-            stack = new Stack<MonoBehaviour>();
-            _pooledObjects.Add(_prefab.GetType(), stack);
-        }
+            stack = new Stack<IPoolable>();
+            _pooledObjects.Add(objectForSpawn, stack);
+        }   
 
-        for (int i = 0; i < number; i++)
+        for (int i = 0; i < _amountToPool; i++)
         {
-            poolObject = GameObject.Instantiate(_prefab).GetComponent<PoolManager>();
+            var poolObject = Instantiate();
             stack.Push(poolObject);
             poolObject.gameObject.SetActive(false);
         }
     }
 
-    public void Push(PoolManager pollObject)
+    private void Push(IPoolable pollObject)
     {
-        _pooledObjects.TryGetValue(_prefab.GetType(), out var stack);
+        _pooledObjects.TryGetValue(_prefab, out var stack);
         stack.Push(pollObject);
     }
 
     public PoolManager Pull()
     {
-        _pooledObjects.TryGetValue(_prefab.GetType(), out var stack);
+        if (_pooledObjects.TryGetValue(_prefab, out var stack))
+        {
+            stack.Pop();
+        }
 
-        MonoBehaviour poolObject;
+        IPoolable poolObject;
 
-        if (PooledCount > 0)
-            poolObject = stack.Pop();
-        else
-            poolObject = GameObject.Instantiate(_prefab).GetComponent<PoolManager>();
+        //Pooble.SpanwFromPull();
 
-        poolObject.gameObject.SetActive(true);
-
-        return (PoolManager)poolObject;
+        return
     }
 }

@@ -1,4 +1,4 @@
-public interface IPoolable<T>
+public interface IPoolable
 {
     void Initialize();
     void ReturnToPool();
