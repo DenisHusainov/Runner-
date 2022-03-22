@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour, ISpawner
     {
         for (int i = 0; i < count; i++)
         {
-           
+            PoolManager.Instance.Pull<Poolable>();
         }
     }
 }

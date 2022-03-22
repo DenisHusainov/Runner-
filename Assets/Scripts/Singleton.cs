@@ -8,7 +8,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : Component
     {
         get
         {
-            if (_instance)
+            if (!_instance)
             {
                 Debug.LogException(new System.Exception($"{nameof(Singleton<T>)} with type {nameof(T)} is null"));
             }
@@ -19,7 +19,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : Component
 
     protected virtual void Awake()
     {
-        if (_instance)
+        if (_instance == null)
         {
             _instance = this as T;
         }

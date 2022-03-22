@@ -9,7 +9,7 @@ public class BonusController : MonoBehaviour
     private BonusController _bonusController = null;
     [SerializeField]
     private int _bonusSpawnNumber = default;
-
+    [SerializeField]
     private PlayerController _player = null;
 
     private void Start()

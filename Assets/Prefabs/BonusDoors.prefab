@@ -60,7 +60,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bonusDoorText: {fileID: 3723634799939243224}
   _bonusController: {fileID: 3723634799343452234}
-  _bonusDoorNumber: 4
+  _bonusSpawnNumber: 0
+  _player: {fileID: 2602440664664573816, guid: 5d219be5e5a9d4ae79883b53b37a1f76, type: 3}
 --- !u!1 &3723634799184009527
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bonusDoorText: {fileID: 3723634800550376647}
   _bonusController: {fileID: 3723634799164689740}
-  _bonusDoorNumber: 2
+  _bonusSpawnNumber: 0
+  _player: {fileID: 2602440664664573816, guid: 5d219be5e5a9d4ae79883b53b37a1f76, type: 3}
 --- !u!1 &3723634799939243226
 GameObject:
   m_ObjectHideFlags: 0

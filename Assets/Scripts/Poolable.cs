@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Poolable : MonoBehaviour, IPoolable
+public class Poolable : MonoBehaviour
 {
     public void Initialize()
     {
