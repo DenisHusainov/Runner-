@@ -32,13 +32,13 @@ public class PoolManager: Singleton<PoolManager>, IPool
         }
     }
 
-    private void Push(Poolable pollObject)
+    private void Prepare(Poolable pollObject)
     {
         _pooledObjects.TryGetValue(_prefab, out var stack);
         stack.Push(pollObject);
     }
 
-    public T Pull<T>() where T : Poolable
+    public T Get<T>() where T : Poolable
     {
         Poolable objectFromPool;
 
