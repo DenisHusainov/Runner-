@@ -14,10 +14,10 @@ public class PoolManager: Singleton<PoolManager>, IPool
     private void Awake()
     {
         base.Awake();
-        Spawn(_prefab);
+        Spawn(_prefab, _amountToPool);
     }
 
-    private void Spawn(Poolable objectForSpawn)
+    private void Spawn(Poolable objectForSpawn, int amountToPool)
     {
         Stack<Poolable> stack = null;
 
@@ -27,7 +27,7 @@ public class PoolManager: Singleton<PoolManager>, IPool
             _pooledObjects.Add(objectForSpawn, stack);
         }   
 
-        for (int i = 0; i < _amountToPool; i++)
+        for (int i = 0; i < amountToPool; i++)
         {
             var poolObject = Instantiate(objectForSpawn, transform.parent);
             stack.Push(poolObject);
@@ -44,13 +44,24 @@ public class PoolManager: Singleton<PoolManager>, IPool
     public T Pull<T>() where T : Poolable
     {
         if (_pooledObjects.TryGetValue(_prefab, out var stack))
-        { 
+        {
             var poolObject = (T)stack.Pop();
             poolObject.SpawnFromPool();
 
             return poolObject;
         }
+        else
+        {
+            Debug.LogError("This is not prepared");
+        }
 
-        return null;
+        var objectFromPool = (T)Instantiate(_prefab);
+
+        if (objectFromPool!=null)
+        {
+            Spawn(_prefab, 1);
+        }
+
+        return objectFromPool;
     }
 }
