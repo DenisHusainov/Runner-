@@ -8,13 +8,10 @@ public class PoolManager: Singleton<PoolManager>, IPool
 
     [SerializeField]
     private Poolable _prefab = default;
-    [SerializeField]
-    private int _amountToPool = default;
 
     private void Awake()
     {
         base.Awake();
-        Spawn(_prefab, _amountToPool);
     }
 
     private void Spawn(Poolable objectForSpawn, int amountToPool)
