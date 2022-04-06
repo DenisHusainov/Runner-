@@ -12,6 +12,7 @@ public class PoolManager: Singleton<PoolManager>, IPool
     private void Awake()
     {
         base.Awake();
+        Spawn(_prefab, 10);
     }
 
     private void Spawn(Poolable objectForSpawn, int amountToPool)

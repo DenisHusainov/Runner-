@@ -17,5 +17,6 @@ public class GameWindow : Window
     private void OnStartGameButtonClicked()
     {
         Started();
+        _startGameButton.gameObject.SetActive(false);
     }
 }

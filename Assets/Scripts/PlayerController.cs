@@ -12,6 +12,16 @@ public class PlayerController : MonoBehaviour, ISpawner
     private Vector3 _moveVector = default;
     private Vector3 _defaultSpeed = default;
 
+    private void OnEnable()
+    {
+        GameManager.Finished += GameManager_Finished;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.Finished -= GameManager_Finished;
+    }
+
     private void Start()
     {
         _defaultSpeed = new Vector3(0, 0, 1);
@@ -19,6 +29,11 @@ public class PlayerController : MonoBehaviour, ISpawner
 
     private void FixedUpdate()
     {
+        if (!CanMove())
+        {
+            return;
+        }
+
         _moveVector = GetMoveVector();
         _rb.velocity = _defaultSpeed * Speed;
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, LeftBorder, RightBorder), transform.position.y, transform.position.z);
@@ -36,14 +51,25 @@ public class PlayerController : MonoBehaviour, ISpawner
 
     public float HorizontalMove()
     {
-          return UIJoystick.Instance.InputVector.x;
+        return UIJoystick.Instance.InputVector.x;
     }
 
     public void Spawn(int count)
     {
         for (int i = 0; i < count; i++)
         {
-            PoolManager.Instance.Get<Poolable>();
+            var obj = PoolManager.Instance.Get<Poolable>();
+            //obj.transform.position = transform.position;
         }
+    }
+
+    private bool CanMove()
+    {
+        return GameManager.Instance.IsStarted && !GameManager.Instance.IsFinished;
+    }
+
+    private void GameManager_Finished()
+    {
+        gameObject.SetActive(false);
     }
 }
