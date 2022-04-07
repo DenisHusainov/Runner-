@@ -12,7 +12,7 @@ public class PoolManager: Singleton<PoolManager>, IPool
     private void Awake()
     {
         base.Awake();
-        Spawn(_prefab, 10);
+        Spawn(_prefab, 30);
     }
 
     private void Spawn(Poolable objectForSpawn, int amountToPool)
@@ -33,7 +33,7 @@ public class PoolManager: Singleton<PoolManager>, IPool
         }
     }
 
-    private void Prepare(Poolable pollObject)
+    public void Prepare(Poolable pollObject)
     {
         _pooledObjects.TryGetValue(_prefab, out var stack);
         stack.Push(pollObject);

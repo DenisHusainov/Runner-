@@ -9,7 +9,7 @@ public class Poolable : MonoBehaviour
 
     public void ReturnToPool()
     {
-        
+        gameObject.SetActive(false);
     }
 
     public void SpawnFromPool()
