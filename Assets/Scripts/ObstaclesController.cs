@@ -10,7 +10,6 @@ public class ObstaclesController : MonoBehaviour
         if (other.gameObject.GetComponent<PlayerController>())
         {
             Crashed();
-            Debug.Log("Crashed");
         }
     }
 }
