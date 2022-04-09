@@ -9,6 +9,16 @@ public class PoolManager: Singleton<PoolManager>, IPool
     [SerializeField]
     private Poolable _prefab = default;
 
+    private void OnEnable()
+    {
+        ObstaclesController.Crashed += ObstaclesController_Crashed;
+    }
+
+    private void OnDisable()
+    {
+        ObstaclesController.Crashed -= ObstaclesController_Crashed;
+    }
+
     private void Awake()
     {
         base.Awake();
@@ -33,7 +43,7 @@ public class PoolManager: Singleton<PoolManager>, IPool
         }
     }
 
-    public void Prepare(Poolable pollObject)
+    private void Prepare(Poolable pollObject)
     {
         _pooledObjects.TryGetValue(_prefab, out var stack);
         stack.Push(pollObject);
@@ -63,5 +73,10 @@ public class PoolManager: Singleton<PoolManager>, IPool
         }
 
         return (T)objectFromPool;
+    }
+
+    private void ObstaclesController_Crashed()
+    {
+        Prepare(_prefab);
     }
 }

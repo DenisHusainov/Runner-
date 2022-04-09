@@ -58,8 +58,8 @@ public class PlayerController : MonoBehaviour, ISpawner
     {
         for (int i = 0; i < count; i++)
         {
-            var obj = PoolManager.Instance.Get<Poolable>();
-            //obj.transform.position = transform.position;
+            var objFromPool = PoolManager.Instance.Get<Poolable>();
+            objFromPool.transform.position = new Vector3(Random.Range(LeftBorder, RightBorder), transform.position.y, transform.position.z);
         }
     }
 
