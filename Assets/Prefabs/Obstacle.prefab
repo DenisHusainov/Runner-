@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1867690348964907939}
   - component: {fileID: 547159699006564537}
   - component: {fileID: 2695864642479198726}
-  - component: {fileID: 1203496134363205925}
+  - component: {fileID: 676899103383732227}
   m_Layer: 0
   m_Name: Cylinder (3)
   m_TagString: Untagged
@@ -97,7 +97,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &1203496134363205925
+--- !u!114 &676899103383732227
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,9 +106,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 535705483548378674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fda0370566764543be39eb563032172, type: 3}
+  m_Script: {fileID: 11500000, guid: d1e6b8aade12f40e1a6f0a1f13fb9dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 1
+  _bonusDoorText: {fileID: 0}
+  _bonusController: {fileID: 0}
+  _bonusSpawnNumber: 0
+  _player: {fileID: 0}
 --- !u!1 &813113544655975237
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +126,7 @@ GameObject:
   - component: {fileID: 6486491128820885582}
   - component: {fileID: 1860814928843516856}
   - component: {fileID: 7288851163051287153}
-  - component: {fileID: 7214453566368367226}
+  - component: {fileID: 2462820957637845608}
   m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -206,7 +211,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &7214453566368367226
+--- !u!114 &2462820957637845608
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,9 +220,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 813113544655975237}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fda0370566764543be39eb563032172, type: 3}
+  m_Script: {fileID: 11500000, guid: d1e6b8aade12f40e1a6f0a1f13fb9dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 1
+  _bonusDoorText: {fileID: 0}
+  _bonusController: {fileID: 0}
+  _bonusSpawnNumber: 0
+  _player: {fileID: 0}
 --- !u!1 &2177540584054594992
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +240,7 @@ GameObject:
   - component: {fileID: 4409618076033214925}
   - component: {fileID: 2005524064110179434}
   - component: {fileID: 1744334213785902067}
-  - component: {fileID: 8517289155944240582}
+  - component: {fileID: 5359483438338704221}
   m_Layer: 0
   m_Name: Cylinder (5)
   m_TagString: Untagged
@@ -315,7 +325,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &8517289155944240582
+--- !u!114 &5359483438338704221
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -324,9 +334,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2177540584054594992}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fda0370566764543be39eb563032172, type: 3}
+  m_Script: {fileID: 11500000, guid: d1e6b8aade12f40e1a6f0a1f13fb9dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 1
+  _bonusDoorText: {fileID: 0}
+  _bonusController: {fileID: 0}
+  _bonusSpawnNumber: 0
+  _player: {fileID: 0}
 --- !u!1 &5266976021357287247
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,7 +354,7 @@ GameObject:
   - component: {fileID: 2150710760643877585}
   - component: {fileID: 7306353263299892317}
   - component: {fileID: 6188545171991651892}
-  - component: {fileID: 7855841833403024095}
+  - component: {fileID: 8994938971130836793}
   m_Layer: 0
   m_Name: Cylinder (2)
   m_TagString: Untagged
@@ -424,7 +439,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &7855841833403024095
+--- !u!114 &8994938971130836793
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -433,9 +448,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5266976021357287247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fda0370566764543be39eb563032172, type: 3}
+  m_Script: {fileID: 11500000, guid: d1e6b8aade12f40e1a6f0a1f13fb9dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 1
+  _bonusDoorText: {fileID: 0}
+  _bonusController: {fileID: 0}
+  _bonusSpawnNumber: 0
+  _player: {fileID: 0}
 --- !u!1 &5880444131676493218
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,7 +468,7 @@ GameObject:
   - component: {fileID: 4230477201352005864}
   - component: {fileID: 8825275028795664972}
   - component: {fileID: 8591482425115798377}
-  - component: {fileID: 6410466382607535630}
+  - component: {fileID: 3636166501155377314}
   m_Layer: 0
   m_Name: Cylinder (4)
   m_TagString: Untagged
@@ -533,7 +553,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &6410466382607535630
+--- !u!114 &3636166501155377314
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -542,9 +562,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5880444131676493218}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fda0370566764543be39eb563032172, type: 3}
+  m_Script: {fileID: 11500000, guid: d1e6b8aade12f40e1a6f0a1f13fb9dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 1
+  _bonusDoorText: {fileID: 0}
+  _bonusController: {fileID: 0}
+  _bonusSpawnNumber: 0
+  _player: {fileID: 0}
 --- !u!1 &5978188205614540484
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,7 +618,7 @@ GameObject:
   - component: {fileID: 2605284640590596242}
   - component: {fileID: 2862024615417586323}
   - component: {fileID: 5114513305866378517}
-  - component: {fileID: 1666800476311152295}
+  - component: {fileID: 5125029102462580160}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -678,7 +703,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &1666800476311152295
+--- !u!114 &5125029102462580160
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -687,6 +712,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6819252426804335028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fda0370566764543be39eb563032172, type: 3}
+  m_Script: {fileID: 11500000, guid: d1e6b8aade12f40e1a6f0a1f13fb9dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 1
+  _bonusDoorText: {fileID: 0}
+  _bonusController: {fileID: 0}
+  _bonusSpawnNumber: 0
+  _player: {fileID: 0}

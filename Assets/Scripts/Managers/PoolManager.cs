@@ -9,20 +9,15 @@ public class PoolManager: Singleton<PoolManager>, IPool
     [SerializeField]
     private Poolable _prefab = default;
 
-    private void OnEnable()
-    {
-        ObstaclesController.Crashed += ObstaclesController_Crashed;
-    }
-
-    private void OnDisable()
-    {
-        ObstaclesController.Crashed -= ObstaclesController_Crashed;
-    }
-
     private void Awake()
     {
         base.Awake();
         Spawn(_prefab, 30);
+    }
+
+    private void Start()
+    {
+        Prepare(_prefab);
     }
 
     private void Spawn(Poolable objectForSpawn, int amountToPool)
@@ -73,10 +68,5 @@ public class PoolManager: Singleton<PoolManager>, IPool
         }
 
         return (T)objectFromPool;
-    }
-
-    private void ObstaclesController_Crashed()
-    {
-        Prepare(_prefab);
     }
 }

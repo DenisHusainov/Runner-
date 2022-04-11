@@ -2,15 +2,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, ISpawner
 {
-    private const float Speed = 20f;
+    private const float Speed = 0.8f;
     private const float RightBorder = 3.5f;
     private const float LeftBorder = -3.5f;
 
-    [SerializeField]
-    private Rigidbody _rb = null;
-
     private Vector3 _moveVector = default;
     private Vector3 _defaultSpeed = default;
+
+    private bool CanMove
+    {
+        get { return GameManager.Instance.IsStarted && !GameManager.Instance.IsFinished; }
+    }
 
     private void OnEnable()
     {
@@ -22,20 +24,25 @@ public class PlayerController : MonoBehaviour, ISpawner
         GameManager.Finished -= GameManager_Finished;
     }
 
+    private void Awake()
+    {
+        //_defaultSpeed = GetComponent<Transform>();
+    }
+
     private void Start()
     {
-        _defaultSpeed = new Vector3(0, 0, 1);
+        _defaultSpeed = new Vector3(0, 0, 1f);
     }
 
     private void FixedUpdate()
     {
-        if (!CanMove())
+        if (!CanMove)
         {
             return;
         }
 
         _moveVector = GetMoveVector();
-        _rb.velocity = _defaultSpeed * Speed;
+        transform.position += _defaultSpeed * Speed;
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, LeftBorder, RightBorder), transform.position.y, transform.position.z);
         transform.position += _moveVector;
     }
@@ -44,14 +51,14 @@ public class PlayerController : MonoBehaviour, ISpawner
     {
         Vector3 dir = Vector3.zero;
 
-        dir.x = HorizontalMove();
+        dir.x = UIJoystick.Instance.InputVector.x;
 
         return dir;
     }
 
-    public float HorizontalMove()
+    private void GameManager_Finished()
     {
-        return UIJoystick.Instance.InputVector.x;
+        gameObject.SetActive(false);
     }
 
     public void Spawn(int count)
@@ -61,15 +68,5 @@ public class PlayerController : MonoBehaviour, ISpawner
             var objFromPool = PoolManager.Instance.Get<Poolable>();
             objFromPool.transform.position = new Vector3(Random.Range(LeftBorder, RightBorder), transform.position.y, transform.position.z);
         }
-    }
-
-    private bool CanMove()
-    {
-        return GameManager.Instance.IsStarted && !GameManager.Instance.IsFinished;
-    }
-
-    private void GameManager_Finished()
-    {
-        gameObject.SetActive(false);
     }
 }
