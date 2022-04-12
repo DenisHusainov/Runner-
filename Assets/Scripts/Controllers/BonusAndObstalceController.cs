@@ -31,7 +31,7 @@ public class BonusAndObstalceController : MonoBehaviour
         {
             if (_type == TypesOfTrigger.Bonus)
             {
-                _player.Spawn(_bonusSpawnNumber);
+                ((ISpawner)_player).Spawn(_bonusSpawnNumber);
                 _bonusController.gameObject.SetActive(false);
             }
 

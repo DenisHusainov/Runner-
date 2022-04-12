@@ -56,12 +56,7 @@ public class PlayerController : MonoBehaviour, ISpawner
         return dir;
     }
 
-    private void GameManager_Finished()
-    {
-        gameObject.SetActive(false);
-    }
-
-    public void Spawn(int count)
+    void ISpawner.Spawn(int count)
     {
         for (int i = 0; i < count; i++)
         {
@@ -69,4 +64,10 @@ public class PlayerController : MonoBehaviour, ISpawner
             objFromPool.transform.position = new Vector3(Random.Range(LeftBorder, RightBorder), transform.position.y, transform.position.z);
         }
     }
+
+    private void GameManager_Finished()
+    {
+        gameObject.SetActive(false);
+    }
+
 }

@@ -1,4 +1,4 @@
 public interface ISpawner
 {
-    public void Spawn(int count);
+    void Spawn(int count);
 }

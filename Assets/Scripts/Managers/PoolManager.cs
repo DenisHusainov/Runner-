@@ -12,7 +12,7 @@ public class PoolManager: Singleton<PoolManager>, IPool
     private void Awake()
     {
         base.Awake();
-        Spawn(_prefab, 30);
+        Spawn(_prefab, 50);
     }
 
     private void Start()
