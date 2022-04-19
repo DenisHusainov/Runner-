@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class BonusAndObstalceController : MonoBehaviour
+public class BonusAndObstalceController : Bonus
 {
     public static event Action Crashed = delegate { };
 
