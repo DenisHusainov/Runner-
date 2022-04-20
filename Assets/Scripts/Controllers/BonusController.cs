@@ -5,8 +5,6 @@ using UnityEngine;
 public class BonusController : Detected
 {
     [SerializeField]
-    private TypesOfTrigger _type;
-    [SerializeField]
     private TextMeshPro _bonusDoorText = null;
     [SerializeField]
     private BonusController _bonusController = null;
@@ -17,10 +15,7 @@ public class BonusController : Detected
 
     private void Start()
     {
-        if (_type == TypesOfTrigger.Bonus)
-        {
-            _bonusDoorText.text = $"{_bonusSpawnNumber}";
-        }
+        _bonusDoorText.text = $"{_bonusSpawnNumber}";
     }
 
     public override void DetectedObject()

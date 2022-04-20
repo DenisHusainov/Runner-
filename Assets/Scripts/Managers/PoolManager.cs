@@ -59,12 +59,8 @@ public class PoolManager: Singleton<PoolManager>, IPool
         {
             Debug.LogError("This is not prepared");
 
-            objectFromPool = Instantiate(_prefab);
-
-            if (objectFromPool != null)
-            {
-                Spawn(_prefab, 1);
-            }
+            Spawn(_prefab, 1);
+            objectFromPool = stack.Pop();
         }
 
         return (T)objectFromPool;
