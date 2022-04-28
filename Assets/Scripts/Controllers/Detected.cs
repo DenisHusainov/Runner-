@@ -2,13 +2,15 @@ using UnityEngine;
 
 public abstract class Detected : MonoBehaviour
 {
-    public abstract void DetectedObject();
+    public abstract void DetectedObject(PlayerController player);
    
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<PlayerController>())
+        var playerContoller = other.gameObject.GetComponent<PlayerController>();
+
+        if (playerContoller)
         {
-            DetectedObject();
+            DetectedObject(playerContoller);
         }
     }
 }

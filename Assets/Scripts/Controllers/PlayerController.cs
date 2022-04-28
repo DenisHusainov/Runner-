@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour, ISpawner
     }
 
     void ISpawner.Spawn(int count)
-    {   
+    {
         for (int i = 0; i < count; i++)
         {
             var objFromPool = PoolManager.Instance.Get<Poolable>();

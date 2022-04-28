@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -10,17 +9,15 @@ public class BonusController : Detected
     private BonusController _bonusController = null;
     [SerializeField]
     private int _bonusSpawnNumber = default;
-    [SerializeField]
-    private PlayerController _player = null;
 
     private void Start()
     {
         _bonusDoorText.text = $"{_bonusSpawnNumber}";
     }
 
-    public override void DetectedObject()
-    {    
-        ((ISpawner)_player).Spawn(_bonusSpawnNumber);
+    public override void DetectedObject(PlayerController player)
+    {
+        ((ISpawner)player).Spawn(_bonusSpawnNumber);
         _bonusController.gameObject.SetActive(false);
     }
 }
