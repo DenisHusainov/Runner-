@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class BonusController : Detected
+public class BonusController : ObjectContact
 {
     [SerializeField]
     private TextMeshPro _bonusDoorText = null;
@@ -15,7 +15,7 @@ public class BonusController : Detected
         _bonusDoorText.text = $"{_bonusSpawnNumber}";
     }
 
-    public override void DetectedObject(PlayerController player)
+    public override void OnInteracted(PlayerController player)
     {
         ((ISpawner)player).Spawn(_bonusSpawnNumber);
         _bonusController.gameObject.SetActive(false);

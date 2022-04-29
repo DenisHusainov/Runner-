@@ -1,16 +1,14 @@
 using UnityEngine;
 
-public abstract class Detected : MonoBehaviour
+public abstract class ObjectContact : MonoBehaviour
 {
-    public abstract void DetectedObject(PlayerController player);
-   
+    public abstract void OnInteracted(PlayerController player);
+    
     void OnTriggerEnter(Collider other)
     {
-        var playerContoller = other.gameObject.GetComponent<PlayerController>();
-
-        if (playerContoller)
+        if (other.gameObject.TryGetComponent<PlayerController>(out PlayerController player))
         {
-            DetectedObject(playerContoller);
+            OnInteracted(player);
         }
     }
 }

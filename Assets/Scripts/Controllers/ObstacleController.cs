@@ -1,10 +1,10 @@
 using System;
 
-public class ObstacleController : Detected
+public class ObstacleController : ObjectContact
 {
     public static event Action Crashed = delegate { };
 
-    public override void DetectedObject(PlayerController player)
+    public override void OnInteracted(PlayerController player)
     {
         Crashed();
     }
