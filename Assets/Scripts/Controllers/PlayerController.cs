@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour, ISpawner
     private const float RightBorder = 3.5f;
     private const float LeftBorder = -3.5f;
     private const float DefaultSpeed = 1f;
+    private const float Speed = 25f;
 
     private bool CanMove
     {
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour, ISpawner
         }
 
         Vector3 expectedPosition = transform.position;
-        expectedPosition.z += DefaultSpeed;
+        expectedPosition.z += DefaultSpeed * Time.fixedDeltaTime * Speed;
         expectedPosition.x += UIJoystick.Instance.InputVector.x;
         expectedPosition.x = Mathf.Clamp(expectedPosition.x, LeftBorder, RightBorder);
         transform.position = expectedPosition;
