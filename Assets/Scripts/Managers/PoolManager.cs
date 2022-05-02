@@ -46,9 +46,7 @@ public class PoolManager: Singleton<PoolManager>, IPool
 
     public T Get<T>() where T : Poolable
     {
-        Poolable objectFromPool;
-
-        if (_pooledObjects.TryGetValue(_prefab, out var stack))
+        if (_pooledObjects.TryGetValue(_prefab, out var stack) && stack.Count > 0)
         {
             var poolObject = (T)stack.Pop();
             poolObject.SpawnFromPool();
@@ -60,9 +58,8 @@ public class PoolManager: Singleton<PoolManager>, IPool
             Debug.LogError("This is not prepared");
 
             Spawn(_prefab, 1);
-            objectFromPool = stack.Pop();
-        }
 
-        return (T)objectFromPool;
+            return (T)_pooledObjects[_prefab].Pop();
+        }
     }
 }

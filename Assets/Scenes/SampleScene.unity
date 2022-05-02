@@ -1131,7 +1131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3723634799343452234, guid: 52104985e22f5443097ac8dd79cbf2bf, type: 3}
       propertyPath: _bonusSpawnNumber
-      value: 3
+      value: 51
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52104985e22f5443097ac8dd79cbf2bf, type: 3}
