@@ -13,10 +13,6 @@ public class PoolManager: Singleton<PoolManager>, IPool
     {
         base.Awake();
         Spawn(_prefab, 50);
-    }
-
-    private void Start()
-    {
         Prepare(_prefab);
     }
 

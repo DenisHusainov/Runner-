@@ -11,7 +11,6 @@ public class MainWindow : Window
 
     private void Start()
     {
-        gameObject.SetActive(true);
         _startGameButton.onClick.AddListener(OnStartGameButtonClicked);
     }
 
