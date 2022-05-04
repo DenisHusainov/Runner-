@@ -1,25 +1,12 @@
 using System;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     public static event Action Finished = delegate { };
 
-    public static GameManager Instance { get; private set; }
     public bool IsStarted { get; private set; }
     public bool IsFinished { get; private set; }
-
-    private void Awake()
-    {
-        if (!Instance)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     private void OnEnable()
     {
