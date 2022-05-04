@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class BonusController : ObjectContact
+public class BonusController : PlayerTriggers
 {
     [SerializeField]
     private TextMeshPro _bonusDoorText = null;

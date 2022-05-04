@@ -1,6 +1,6 @@
 using System;
 
-public class Obstacle : ObjectContact
+public class Obstacle : PlayerTriggers
 {
     public static event Action Crashed = delegate { };
 

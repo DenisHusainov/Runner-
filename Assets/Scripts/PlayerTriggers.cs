@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class ObjectContact : MonoBehaviour
+public abstract class PlayerTriggers : MonoBehaviour
 {
     public abstract void OnInteracted(PlayerController player);
     
