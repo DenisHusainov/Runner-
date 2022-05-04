@@ -13,8 +13,6 @@ public class SmoothFollow : MonoBehaviour
     [SerializeField]
     private Transform _target;
 
-    private bool _isAcceleration = false;
-
     private void LateUpdate()
     {
         // Early out if we don't have a target
